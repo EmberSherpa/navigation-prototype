@@ -8,7 +8,6 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('apps', {}, function() {});
   this.route('contact', {});
-  this.route('search', {});
 });
 
 export default Router;

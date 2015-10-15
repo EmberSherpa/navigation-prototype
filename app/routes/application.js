@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const {
-  isEmpty
+  isPresent
 } = Ember;
 
 export default Ember.Route.extend({
@@ -10,11 +10,11 @@ export default Ember.Route.extend({
       refreshModel: true
     }
   },
-  beforeModel(transition) {
-    const { query } = transition.queryParams;
+  model(params, transition) {
+    const { query } = params;
     const isResourceRoute = ['apps.index'].contains(transition.targetName);
-    if (!isResourceRoute && !isEmpty(query)) {
-      this.transitionTo('search', {queryParams: { query }});
+    return {
+      isSearchResultsVisible: isPresent(query) && !isResourceRoute
     }
   }
 });
